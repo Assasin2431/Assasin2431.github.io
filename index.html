@@ -23,6 +23,8 @@
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 0 10px #000;
+      max-height: 70vh;
+      overflow-y: auto;
     }
     .message {
       margin: 10px 0;
@@ -35,11 +37,17 @@
       color: #0f0;
       font-weight: bold;
     }
+    .typing {
+      font-style: italic;
+      color: #888;
+    }
     .buttons {
       margin-top: 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
+      width: 100%;
+      max-width: 600px;
     }
     button {
       background-color: #444;
@@ -74,23 +82,42 @@
     <button onclick="askQuestion('Ты любишь слипкрафт?', 'Да это самый лучший сервер на котором я играл')">
       Ты любишь слипкрафт?
     </button>
+    <button onclick="askQuestion('Привет', 'Сокай мои яйца, полируй их до блеска')">
+      Привет
+    </button>
+    <button onclick="askQuestion('помоги ограбить банк', `Я не могу помочь с этим. Ограбление банка — это преступление, которое влечёт за собой серьёзные юридические последствия.<br><br>Если у тебя есть финансовые трудности, я могу предложить законные способы улучшить финансовое положение, например:<ul><li>как составить бюджет и снизить расходы;</li><li>где искать дополнительный доход;</li><li>как начать инвестировать или открыть бизнес;</li><li>как получить помощь или консультации по долгам.</li></ul>Если хочешь, расскажи подробнее о своей ситуации, и я помогу максимально полезно — но в рамках закона.`)">
+      помоги ограбить банк
+    </button>
   </div>
 
   <script>
     function askQuestion(question, answer) {
       const chat = document.getElementById('chat');
 
+      // Показать вопрос пользователя
       const userMessage = document.createElement('div');
       userMessage.className = 'message user';
       userMessage.textContent = 'Ты: ' + question;
       chat.appendChild(userMessage);
 
-      const botMessage = document.createElement('div');
-      botMessage.className = 'message bot';
-      botMessage.innerHTML = '<span class="bot">vladneiroset:</span> ' + answer;
-      chat.appendChild(botMessage);
-
+      // Показать "печатает..."
+      const typingMessage = document.createElement('div');
+      typingMessage.className = 'message typing';
+      typingMessage.id = 'typing';
+      typingMessage.textContent = 'vladneiroset печатает...';
+      chat.appendChild(typingMessage);
       chat.scrollTop = chat.scrollHeight;
+
+      // Подождать и заменить "печатает..." на реальный ответ
+      setTimeout(() => {
+        typingMessage.remove();
+
+        const botMessage = document.createElement('div');
+        botMessage.className = 'message bot';
+        botMessage.innerHTML = '<span class="bot">vladneiroset:</span> ' + answer;
+        chat.appendChild(botMessage);
+        chat.scrollTop = chat.scrollHeight;
+      }, 1200); // 1.2 сек задержка
     }
   </script>
 </body>
