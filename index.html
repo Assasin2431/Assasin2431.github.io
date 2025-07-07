@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>sleepcraft.ru</title>
+  <title>Скример</title>
   <style>
     html, body {
       margin: 0;
@@ -26,7 +26,7 @@
     }
 
     #intro {
-      background: white;
+      background: #eeeeee; /* светло-серый фон */
       color: black;
     }
 
@@ -73,7 +73,6 @@
   const screamer = document.getElementById('screamer');
   const audio = document.getElementById('audio');
 
-  // Вход в fullscreen и запуск скримера
   function activateScreamer() {
     document.documentElement.requestFullscreen().catch(console.error);
 
@@ -84,7 +83,6 @@
     audio.play().catch(console.warn);
   }
 
-  // Выход из fullscreen и возврат к заставке
   function exitScreamer() {
     document.exitFullscreen().catch(console.error);
 
@@ -95,10 +93,8 @@
     intro.style.display = 'flex';
   }
 
-  // Клик по заставке запускает скример
   intro.addEventListener('click', activateScreamer);
 
-  // Esc — выход из скримера
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       exitScreamer();
