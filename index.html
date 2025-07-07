@@ -25,20 +25,18 @@
 </head>
 <body>
 
-<img id="gif" src="cat.gif" alt="Cat GIF">
-<audio id="audio" src="murmur.mp3" autoplay preload="auto"></audio>
+<img id="gif" src="0707.gif" alt="Cat GIF">
+<audio id="audio" src="murmur.mp3" autoplay preload="auto" loop></audio>
 
 <script>
   const audio = document.getElementById('audio');
   audio.volume = 1.0;
 
-  // Попытка войти в fullscreen
   window.addEventListener('load', () => {
     document.documentElement.requestFullscreen().catch(console.error);
     audio.play().catch(console.warn);
   });
 
-  // Выход из fullscreen по Esc
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       document.exitFullscreen().catch(console.error);
