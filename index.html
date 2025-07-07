@@ -1,53 +1,22 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Скример</title>
+  <title>sleepcraft.ru</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      background: white;
+      background-color: black;
       height: 100%;
       overflow: hidden;
-      font-family: sans-serif;
-    }
-
-    #intro, #screamer {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.3s ease;
-    }
-
-    #intro {
-      background: #eeeeee; 
-      color: black;
-    }
-
-    #intro h1 {
-      font-size: 2.5vw;
-      text-align: center;
-      margin: 0 0 20px 0;
-    }
-
-    #intro img {
-      width: auto;
-      height: 100px;
-    }
-
-    #screamer {
-      background: black;
-      display: none;
       cursor: none;
     }
-
     #gif {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 100vw;
       height: 100vh;
       object-fit: cover;
@@ -56,48 +25,21 @@
 </head>
 <body>
 
-<!-- Начальная заставка -->
-<div id="intro">
-  <h1>Нажми для скримера (там скример)</h1>
-  <img src="ssshadek_stul.png" alt="ssshadek">
-</div>
-
-<!-- Скример -->
-<div id="screamer">
-  <img id="gif" src="0707.gif" alt="Screamer">
-  <audio id="audio" src="murmur.mp3" loop preload="auto"></audio>
-</div>
+<img id="gif" src="0707.gif" alt="Cat GIF">
+<audio id="audio" src="murmur.MP3" autoplay preload="auto" loop></audio>
 
 <script>
-  const intro = document.getElementById('intro');
-  const screamer = document.getElementById('screamer');
   const audio = document.getElementById('audio');
+  audio.volume = 1.0;
 
-  function activateScreamer() {
+  window.addEventListener('load', () => {
     document.documentElement.requestFullscreen().catch(console.error);
-
-    intro.style.display = 'none';
-    screamer.style.display = 'flex';
-
-    audio.volume = 1.0;
     audio.play().catch(console.warn);
-  }
-
-  function exitScreamer() {
-    document.exitFullscreen().catch(console.error);
-
-    audio.pause();
-    audio.currentTime = 0;
-
-    screamer.style.display = 'none';
-    intro.style.display = 'flex';
-  }
-
-  intro.addEventListener('click', activateScreamer);
+  });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      exitScreamer();
+      document.exitFullscreen().catch(console.error);
     }
   });
 </script>
