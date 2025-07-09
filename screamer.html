@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>sleepcraft.ru</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      height: 100%;
+      overflow: hidden;
+      cursor: none;
+    }
+    #gif {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+<img id="gif" src="0707.gif" alt="Cat GIF">
+<audio id="audio" src="murmur.MP3" autoplay preload="auto" loop></audio>
+
+<script>
+  const audio = document.getElementById('audio');
+  audio.volume = 1.0;
+
+  window.addEventListener('load', () => {
+    document.documentElement.requestFullscreen().catch(console.error);
+    audio.play().catch(console.warn);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.exitFullscreen().catch(console.error);
+    }
+  });
+</script>
+
+</body>
+</html>
 
