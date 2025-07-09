@@ -1,48 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>sleepcraft.ru</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Твой заголовок</title>
   <style>
-    html, body {
+    body {
+      font-family: Georgia, serif;
+      background-color: #f8f9fa;
+      color: #202122;
       margin: 0;
       padding: 0;
-      background-color: black;
-      height: 100%;
-      overflow: hidden;
-      cursor: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      text-align: center;
     }
-    #gif {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
+
+    .container {
+      max-width: 800px;
+      padding: 40px 20px;
+    }
+
+    .header {
+      font-size: 1.8em;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: #3366cc;
+    }
+
+    .main-text {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .footer {
+      font-size: 1em;
+      font-style: italic;
+      color: #555;
     }
   </style>
 </head>
 <body>
-
-<img id="gif" src="0707.gif" alt="Cat GIF">
-<audio id="audio" src="murmur.MP3" autoplay preload="auto" loop></audio>
-
-<script>
-  const audio = document.getElementById('audio');
-  audio.volume = 1.0;
-
-  window.addEventListener('load', () => {
-    document.documentElement.requestFullscreen().catch(console.error);
-    audio.play().catch(console.warn);
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      document.exitFullscreen().catch(console.error);
-    }
-  });
-</script>
-
+  <div class="container">
+    <div class="header">ТУТ ТВОЙ ЗАГОЛОВОК</div>
+    
+    <div class="main-text">
+      Здесь будет основной текст — на 50–60 слов. Просто вставь свой текст, и он автоматически будет по центру и с нормальной читаемостью.
+    </div>
+    
+    <div class="footer">Тут нижний короткий текст</div>
+  </div>
 </body>
 </html>
